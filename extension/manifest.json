@@ -15,7 +15,7 @@
 			"32": "images/safelink.png"
 		},
 		"default_title": "Safe Link",
-		"default_popup": "popup.html"
+		"default_popup": "index.html"
 	},
 	"permissions": [
 		"tabs"

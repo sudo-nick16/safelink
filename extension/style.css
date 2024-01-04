@@ -14,7 +14,7 @@ body {
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
-	border: 3px solid green;
+	border: 3px solid white;
 }
 
 #status-container {
@@ -44,6 +44,7 @@ input {
 	background: black;
 	padding: 8px 10px;
 	border-radius: 5px;
+	font-size: 14px;
 }
 
 button {
@@ -60,6 +61,7 @@ button {
 }
 
 p {
+	font-size: 12px;
 	margin: 0px 0px 10px 0px;
 	color: white;
 }

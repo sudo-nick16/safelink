@@ -2,6 +2,10 @@ const UNSAFE_COLOR = "red";
 const UNSAFE_IMAGE = "./images/unsafe.png";
 const SAFE_COLOR = "green";
 const SAFE_IMAGE = "./images/safe.png";
+const LOADING_COLOR = "yellow";
+const LOADING_IMAGE = "./images/loading.png";
+const ERROR_COLOR = "red";
+const ERROR_IMAGE = "./images/error.png";
 const API_URL = "http://localhost:3000";
 
 const statusImage = document.getElementById("status-img");
@@ -15,6 +19,16 @@ const setBorderColor = (color) => {
 
 const setStatusImage = (imgSrc) => {
 	statusImage.src = imgSrc;
+}
+
+const setError = () => {
+	setBorderColor(ERROR_COLOR);
+	setStatusImage(ERROR_IMAGE);
+}
+
+const setLoading = () => {
+	setBorderColor(LOADING_COLOR);
+	setStatusImage(LOADING_IMAGE);
 }
 
 const setSafe = () => {
@@ -32,17 +46,23 @@ const fetchURLInfo = async (url) => {
 		return;
 	}
 	try {
+		setLoading();
 		const resp = await fetch(`${API_URL}/is-safe?url=${url}`, {
 			mode: "cors"
 		});
 		const data = await resp.json();
-		if (data.error || !data.safe) {
+		if (data.error) {
+			setError();
+			return;
+		}
+		if (!data.safe) {
 			setUnSafe();
 			return;
 		}
 		setSafe();
 	} catch (error) {
 		console.log("[ERROR] ", error);
+		setError();
 	}
 }
 
@@ -58,3 +78,21 @@ checkBtn.addEventListener('click', () => {
 	}
 	fetchURLInfo(urlInput.value);
 })
+
+if (chrome && chrome.extension) {
+	window.addEventListener('DOMContentLoaded', async () => {
+		try {
+			const tab = await getCurrentTab();
+			urlInput.value = tab?.url || "";
+			fetchURLInfo(tab?.url);
+		} catch (error) {
+			console.log("[ERROR] ", error);
+			setError();
+		}
+	})
+} else {
+	body.style.position = "fixed";
+	body.style.top = "50%";
+	body.style.left = "50%";
+	body.style.transform = "translate(-50%, -50%)";
+}

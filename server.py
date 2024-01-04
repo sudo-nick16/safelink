@@ -3,7 +3,7 @@ from flask_cors import CORS
 import pickle
 from utils.extract import extract_features_as_df
  
-app = Flask(__name__, static_url_path="/", static_folder="web")
+app = Flask(__name__, static_url_path="/", static_folder="extension")
 CORS(app)
  
 ai_file = open("ai/model.pickle", "rb")
