@@ -1,0 +1,27 @@
+{
+	"manifest_version": 3,
+	"name": "Safe Link",
+	"version": "0.1",
+	"description": "Know if the url is safe.",
+	"icons": {
+		"16": "images/safelink.png",
+		"48": "images/safelink.png",
+		"128": "images/safelink.png"
+	},
+	"action": {
+		"default_icon": {
+			"16": "images/safelink.png",
+			"24": "images/safelink.png",
+			"32": "images/safelink.png"
+		},
+		"default_title": "Safe Link",
+		"default_popup": "popup.html"
+	},
+	"permissions": [
+		"tabs"
+	],
+    "content_security_policy": {
+        "script-src": "self",
+        "object-src": "none"
+    }
+}
