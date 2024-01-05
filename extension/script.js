@@ -6,7 +6,7 @@ const LOADING_COLOR = "yellow";
 const LOADING_IMAGE = "./images/loading.png";
 const ERROR_COLOR = "red";
 const ERROR_IMAGE = "./images/error.png";
-const API_URL = "http://localhost:3000";
+const API_URL = "http://localhost:5000";
 
 const statusImage = document.getElementById("status-img");
 const body = document.getElementsByTagName("body")[0];
