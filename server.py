@@ -1,11 +1,9 @@
 from flask import Flask, jsonify, redirect, request
 from flask_cors import CORS
 import pickle
-from os import environ
 from utils.extract import extract_features_as_df
  
 app = Flask(__name__, static_url_path="/", static_folder="extension")
-app.config['PORT'] = environ.get('PORT')
 CORS(app)
  
 ai_file = open("ai/model.pickle", "rb")

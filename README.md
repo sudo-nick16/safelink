@@ -9,7 +9,8 @@ Contains two models:
 virtualenv venv
 source venv/bin/activate
 pip install -r requirements.txt
-flask --app server run
+python ai/model.py
+gunicorn server:app
 ```
 
 ## Screenshots
